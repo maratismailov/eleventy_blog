@@ -1,6 +1,16 @@
+const pluginPWA = require("eleventy-plugin-pwa");
+
 module.exports = function(eleventyConfig) {
+    eleventyConfig.addPlugin(pluginPWA, {
+        swDest: "./_site/service-worker.js",
+        globDirectory: "./_site",
+        clientsClaim: true,
+        skipWaiting: true
+      });
+
     eleventyConfig.addPassthroughCopy('images')
     eleventyConfig.addPassthroughCopy('admin')
+    eleventyConfig.addPassthroughCopy('manifest.json')
   
     const {
       DateTime
