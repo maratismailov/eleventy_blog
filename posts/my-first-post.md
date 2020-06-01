@@ -1,8 +1,9 @@
 ---
 layout: layouts/post.njk
-title: My first post
-description: The first post on the Eleventy + Netlify CMS from scratch blog
+title: Первая публикация
+description: Описание первой публикации
 date: 2020-04-18
-featuredImage: /images/uploads/dimitry-anikin-R77kt9VjPjA-unsplash.jpg
+featuredImage: /images/uploads/david-troeger-M8xxVih_V_U-unsplash.jpg
+alt: Черепаха
 ---
-Hello, here is the body of the post.
+Привет, это тело публикации

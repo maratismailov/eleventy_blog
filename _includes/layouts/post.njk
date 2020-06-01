@@ -11,6 +11,6 @@ layout: layouts/base.njk
 </style>
 <h2>{{ title }}</h2>
 <h3>{{ date | readableDate }}</h3>
-<img src="{{ featuredImage | url }}" alt="{{ featuredImage }}">
+<img src="{{ featuredImage | url }}" alt="{{ alt }}">
 <link rel="stylesheet" href="{{ '/styles/post.css' | url }}">
 <p>{{ content | safe }}</p>
