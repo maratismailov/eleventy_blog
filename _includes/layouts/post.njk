@@ -1,7 +1,16 @@
 ---
 layout: layouts/base.njk
 ---
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+</style>
 <h2>{{ title }}</h2>
 <h3>{{ date | readableDate }}</h3>
-<img src="{{ featuredImage | url }}" alt="{{ featuredImage }}"></img>
+<img style = "display: block, max-width: 100%; height: auto" src="{{ featuredImage | url }}" alt="{{ featuredImage }}">
+<link rel="stylesheet" href="{{ '/styles/post.css' | url }}">
 <p>{{ content | safe }}</p>
