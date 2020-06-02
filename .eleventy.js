@@ -36,7 +36,7 @@ module.exports = function (eleventyConfig) {
 
 
   eleventyConfig.addTransform("images", function (content, outputPath) {
-    const blog = /posts\/([a-zA-Z0-9_-]+)\/index\.html/i;
+    const blog = /posts\/([а-яА-Яa-zA-Z0-9_-]+)\/index\.html/i;
     // const projects = /projects\/([a-zA-Z0-9_-]+)\/index\.html/i;
     // const imagesInParagraph =
     //   /\<p\>\<img src\=\"\/images\/([^\.]*).([^\"]*)\" alt\=\"([^\>]*)\"(.*?)\>\<\/p\>/ig;
@@ -105,28 +105,6 @@ module.exports = function (eleventyConfig) {
       <figcaption>${alt}</figcaption>
     </figure>`
     }
-    //   <figure>
-    //   <picture>
-    //     <source
-    //       srcset="/images/${url}-small.webp 320w,
-    //               /images/${url}-medium.webp 640w,
-    //               /images/${url}.webp 1000w"
-    //       sizes="${sizes}"
-    //       type="image/webp">
-    //     <img
-    //       src="/images/${url}.${extension}"
-    //       data-src="auto"
-    //       srcset="/images/${url}-small.${extension} 320w,
-    //               /images/${url}-medium.${extension} 640w,
-    //               /images/${url}.${extension} 1000w"
-    //       data-srcset="/images/${url}-small.${extension} 320w,
-    //                   /images/${url}-medium.${extension} 640w,
-    //                   /images/${url}.${extension} 1000w"
-    //       sizes="${sizes}"
-    //       alt="${alt}" loading="lazy">
-    //   </picture>
-    //   <figcaption>${alt}</figcaption>
-    // </figure>`
 
     if (outputPath && outputPath.match(blog)) {
       content = content.replace(images, (match, p1, p2, p3) => {
