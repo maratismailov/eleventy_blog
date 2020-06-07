@@ -1,8 +1,11 @@
 const pluginPWA = require("eleventy-plugin-pwa");
 const sharp = require('sharp');
-const fs = require('fs')
+const fs = require('fs');
+const del = require('del');
 
 module.exports = function (eleventyConfig) {
+  const dirToClean = '_site/*';
+     del(dirToClean);
   eleventyConfig.addPlugin(pluginPWA, {
     swDest: "./_site/service-worker.js",
     globDirectory: "./_site",
