@@ -4,23 +4,15 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/icons/favicon.ico" />
-    <link rel="stylesheet" href="{{ '/styles/post.css' | url }}">
+    <link rel="stylesheet" href="{{ '/styles/global.css' | url }}">
     <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker
-            .register("/service-worker.js")
-            .then(function() {
-                console.log("ServiceWorker has been registered!");
-            })
-            .catch(console.error);
-        }
-    </script>
+      if ("serviceWorker" in navigator)
+        navigator.serviceWorker.register("/service-worker.js");
+    </script> 
   </head>
 
   <body>
-    <h1>
-      Eleventy Заглавное сообщение
-    </h1>
+    {% include "../components/header.njk" %}
     {{ content | safe }}
     <script>
     if (window.netlifyIdentity) {

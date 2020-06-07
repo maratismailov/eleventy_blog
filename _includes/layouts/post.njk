@@ -1,5 +1,9 @@
 ---
 layout: layouts/base.njk
+pageClass: post
+eleventyNavigation:
+  key: post
+  parent: blog
 ---
 
 <style>
@@ -12,5 +16,4 @@ layout: layouts/base.njk
 <h2>{{ title }}</h2>
 <h3>{{ date | readableDate }}</h3>
 <img src="{{ featuredImage | url }}" alt="{{ alt }}">
-<link rel="stylesheet" href="{{ '/styles/post.css' | url }}">
 <p>{{ content | safe }}</p>

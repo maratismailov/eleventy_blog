@@ -5,5 +5,7 @@ description: Описание первой публикации
 date: 2020-04-18
 featuredImage: /images/uploads/david-troeger-M8xxVih_V_U-unsplash.jpg
 alt: Черепаха
+eleventyNavigation:
+  key: Главная
 ---
-Привет, это тело публикации2
+Привет, это тело публикации2выв

@@ -8,6 +8,9 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy-navigation": "^0.1.5",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "eleventy-plugin-json-feed": "0.0.7",
     "eleventy-plugin-pwa": "^1.0.8",
     "sharp": "^0.25.3"
   },

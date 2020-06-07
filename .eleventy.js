@@ -2,10 +2,31 @@ const pluginPWA = require("eleventy-plugin-pwa");
 const sharp = require('sharp');
 const fs = require('fs');
 const del = require('del');
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const pluginJsonFeed = require("eleventy-plugin-json-feed");
 
 module.exports = function (eleventyConfig) {
   const dirToClean = '_site/*';
-     del(dirToClean);
+  del(dirToClean);
+
+
+  configFunction: (__, options = {}) => {
+    console.log('PWA running');
+    function postBuild() {
+      const Eleventy = require("@11ty/eleventy/src/Eleventy");
+      shimmer.wrap(Eleventy.prototype, "finish", function(orig) {
+        const outputDir = new Eleventy().outputDir;
+        process.on("unhandledRejection", (reason) => {
+          console.log("Reason: " + reason);
+        });
+        return swBuild(options, outputDir).then((res) => console.log(res));
+
+      });
+    }
+    setImmediate(postBuild);
+  }
+
   eleventyConfig.addPlugin(pluginPWA, {
     swDest: "./_site/service-worker.js",
     globDirectory: "./_site",
@@ -13,7 +34,17 @@ module.exports = function (eleventyConfig) {
     skipWaiting: true
   });
 
+  eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(pluginJsonFeed, {
+    content_html: true,
+    image_metadata_field_name: "social_media_image",
+    summary_metadata_field_name: "description"
+  });
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+
   eleventyConfig.addPassthroughCopy('images')
+  eleventyConfig.addPassthroughCopy('styles')
   eleventyConfig.addPassthroughCopy('admin')
   eleventyConfig.addPassthroughCopy('manifest.json')
 
@@ -52,38 +83,18 @@ module.exports = function (eleventyConfig) {
     function generateImage(url, extension, alt) {
       // Get image
       // const image = sharp(`${url}.${extension}`);
-      const image = sharp(`_site/images/${url}.${extension}`, { failOnError: false });
+      const image = sharp(`images/${url}.${extension}`, { failOnError: false });
       // Resize image to 320px and 640px
       const smallImage = image.clone().resize({ width: 320 });
       const mediumImage = image.clone().resize({ width: 640 });
       // Generate a webp version of a large image
-      // image.clone().webp().toFile(`_site/images/${url}.webp`);
-      image.clone().webp().toBuffer(function (err, buffer) {
-        fs.writeFile(`_site/images/${url}.webp`, buffer, function (e) { });
-      });
+      image.clone().webp().toFile(`_site/images/${url}.webp`);
       // Generate a small original and webp image
       smallImage.clone().toFile(`_site/images/${url}-small.${extension}`);
-      // smallImage.clone().toBuffer(function (err, buffer) {
-      //   fs.writeFile(`_site/images/${url}-small.${extension}`, buffer, function (e) { });
-      // });
       smallImage.clone().webp().toFile(`_site/images/${url}-small.webp`);
-      // smallImage.clone().webp().toBuffer(function (err, buffer) {
-      //   fs.writeFile(`_site/images/${url}-small.webp`, buffer, function (e) { });
-      // });
       // Generate a medium original and webp image
       mediumImage.clone().toFile(`_site/images/${url}-medium.${extension}`);
-      // mediumImage.clone().toBuffer(function (err, buffer) {
-      //   fs.writeFile(`_site/images/${url}-medium.${extension}`, buffer, function (e) { });
-      // });
       mediumImage.clone().webp().toFile(`_site/images/${url}-medium.webp`);
-      // mediumImage.clone().webp().toBuffer(function (err, buffer) {
-      //   fs.writeFile(`_site/images/${url}-medium.webp`, buffer, function (e) { });
-      // });
-
-      // sharp('file.jpg').resize(100, 100).toBuffer(function (err, buffer) {
-      //   fs.writeFile('file.jpg', buffer, function (e) { });
-      // });
-
       return `
       <figure>
       <picture>
