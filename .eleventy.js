@@ -22,6 +22,7 @@ module.exports = function (eleventyConfig) {
 
 
   eleventyConfig.addPassthroughCopy('images')
+  eleventyConfig.addPassthroughCopy('fonts')
   eleventyConfig.addPassthroughCopy('styles')
   eleventyConfig.addPassthroughCopy('admin')
   eleventyConfig.addPassthroughCopy('manifest.json')

@@ -1,11 +1,17 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eleventy Заглавное сообщение</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/icons/favicon.ico" />
     <link rel="stylesheet" href="{{ '/styles/global.css' | url }}">
     <link rel="stylesheet" href="{{ '/styles/prism.css' | url }}">
+        <!-- Preload font -->
+    <link rel="preload" href="/fonts/Roboto-Bold.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="/fonts/Roboto-BoldItalic.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="/fonts/Roboto-Italic.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="/fonts/Roboto-Regular.woff" as="font" type="font/woff" crossorigin>
     <script>
       if ("serviceWorker" in navigator)
         navigator.serviceWorker.register("/service-worker.js");
