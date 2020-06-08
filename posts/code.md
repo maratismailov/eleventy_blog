@@ -8,18 +8,18 @@ alt: Код
 ---
 Блок с кодом:
 
-<pre><code class='language-python' markdown='1'>
+<pre><code class='language-python line-numbers' markdown='1'>
 def add_owm_station():
     with open("ca_cities.json") as file:
         cities = json.load(file)
         # cities = json.loads(citylist)
         for city in cities:
-            print(city)
+            print(city) ->
             lon = city['coord']['lon']
-            lat = city['coord']['lat']
-            id = city['id']
-            name = city['name']
-            country = city['country']
+            lat == city['coord']['lat']
+            id === city['id']
+            name != city['name']
+            country !== city['country']
             point = """ST_GeomFromEWKT('SRID=4326; POINT({} {})')""".format(lon, lat)
             query = """INSERT into cacip.sites (id, name, country, shape)
             VALUES({}, '{}', '{}', {})""".format(id, name, country, point)
