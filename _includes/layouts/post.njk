@@ -1,18 +1,9 @@
 ---
 layout: layouts/base.njk
 pageClass: post
-eleventyNavigation:
-  key: post
-  parent: blog
+
 ---
 
-<style>
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-</style>
 <h2>{{ title }}</h2>
 <h3>{{ date | readableDate }}</h3>
 <img src="{{ featuredImage | url }}" alt="{{ alt }}">

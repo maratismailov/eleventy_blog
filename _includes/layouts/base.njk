@@ -5,6 +5,7 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/icons/favicon.ico" />
     <link rel="stylesheet" href="{{ '/styles/global.css' | url }}">
+    <link rel="stylesheet" href="{{ '/styles/prism.css' | url }}">
     <script>
       if ("serviceWorker" in navigator)
         navigator.serviceWorker.register("/service-worker.js");
@@ -14,6 +15,7 @@
   <body>
     {% include "../components/header.njk" %}
     {{ content | safe }}
+    <script src="/styles/prism.js"></script>
     <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {

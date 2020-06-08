@@ -7,32 +7,10 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const pluginJsonFeed = require("eleventy-plugin-json-feed");
 
 module.exports = function (eleventyConfig) {
-  const dirToClean = '_site/*';
-  del(dirToClean);
+  // const dirToClean = '_site/*';
+  // del(dirToClean);
 
-
-  configFunction: (__, options = {}) => {
-    console.log('PWA running');
-    function postBuild() {
-      const Eleventy = require("@11ty/eleventy/src/Eleventy");
-      shimmer.wrap(Eleventy.prototype, "finish", function(orig) {
-        const outputDir = new Eleventy().outputDir;
-        process.on("unhandledRejection", (reason) => {
-          console.log("Reason: " + reason);
-        });
-        return swBuild(options, outputDir).then((res) => console.log(res));
-
-      });
-    }
-    setImmediate(postBuild);
-  }
-
-  eleventyConfig.addPlugin(pluginPWA, {
-    swDest: "./_site/service-worker.js",
-    globDirectory: "./_site",
-    clientsClaim: true,
-    skipWaiting: true
-  });
+  eleventyConfig.addPlugin(pluginPWA);
 
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginJsonFeed, {
