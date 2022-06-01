@@ -12,7 +12,7 @@
     "@11ty/eleventy-plugin-rss": "^1.0.7",
     "eleventy-plugin-json-feed": "0.0.7",
     "eleventy-plugin-pwa": "^1.0.8",
-    "sharp": "^0.25.3"
+    "sharp": "^0.30.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
